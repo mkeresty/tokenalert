@@ -1,8 +1,5 @@
 from __future__ import print_function
 
-import asyncio
-import aiohttp
-import json
 import discord
 import requests
 from web3 import Web3, HTTPProvider
