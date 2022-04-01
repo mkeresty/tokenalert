@@ -21,35 +21,37 @@ async def timer():
 async def get_token(oldaddy):
 
 
-    response = requests.get('https://api.etherscan.io/api?module=logs&action=getLogs&fromBlock=14502540&toBlock=latest&address=0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f&topic0=0x0d3648bd0f6ba80134a33ba9275ac585d9d315f0ad8355cddefde31afa28d0e9&apikey=79XW92AXXB3SF979BM1QKHU2UGNYRJHQMW')
+    response = requests.get('https://api.etherscan.io/api?module=logs&action=getLogs&fromBlock=14502520&toBlock=latest&address=0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f&topic0=0x0d3648bd0f6ba80134a33ba9275ac585d9d315f0ad8355cddefde31afa28d0e9&apikey=79XW92AXXB3SF979BM1QKHU2UGNYRJHQMW')
     print(response.status_code)
     jsonfy=response.json()
+    
+    if jsonfy['status'] == 2:
 
-    no1= '0x0d3648bd0f6ba80134a33ba9275ac585d9d315f0ad8355cddefde31afa28d0e9'
-    no2= '0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
+        no1= '0x0d3648bd0f6ba80134a33ba9275ac585d9d315f0ad8355cddefde31afa28d0e9'
+        no2= '0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
 
-    x = jsonfy['result'][-1]['topics']
+        x = jsonfy['result'][-1]['topics']
 
-    addy='null'
-    for i in x:
-        if i != no1 and i != no2:
-            addy = i
-            addy= addy[26:]
-            addy='0x'+addy
+        addy='null'
+        for i in x:
+            if i != no1 and i != no2:
+                addy = i
+                addy= addy[26:]
+                addy='0x'+addy
 
-            print('addy', addy)
-            print('old', oldaddy[-1])
-            #print('list',oldaddy)
+                print('addy', addy)
+                print('old', oldaddy[-1])
+                #print('list',oldaddy)
 
-            if addy != oldaddy[-1]:
-                oldaddy.append(addy)
+                if addy != oldaddy[-1]:
+                    oldaddy.append(addy)
 
-                # print(oldaddy)
+                    # print(oldaddy)
 
-                # print(addy)
-                await get_token_data(addy)
+                    # print(addy)
+                    await get_token_data(addy)
 
-                return()
+                    return()
 
 async def get_token_data(addy):
     w3 = Web3(Web3.HTTPProvider('https://mainnet.infura.io/v3/f5f59da316084e02a53b9c8a43692a98'))
