@@ -25,7 +25,7 @@ async def get_token(oldaddy):
     print(response.status_code)
     jsonfy=response.json()
     
-    if jsonfy['status'] == 2:
+    if jsonfy['status'] == "1":
 
         no1= '0x0d3648bd0f6ba80134a33ba9275ac585d9d315f0ad8355cddefde31afa28d0e9'
         no2= '0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
