@@ -7,7 +7,7 @@ import time
 
 global oldaddy 
 
-oldaddy=['start','0xdacd61bce7ae049270a156e5f21f00ae1839d51e']
+oldaddy=['start',]
 
 async def timer():
     while True:
@@ -64,7 +64,7 @@ async def get_token(oldaddy):
                     return()
 
 async def get_token_data(addy):
-    w3 = Web3(Web3.HTTPProvider('https://mainnet.infura.io/v3/f5f59da316084e02a53b9c8a43692a98'))
+    w3 = Web3(Web3.HTTPProvider(''))
 
     addy = addy
     tokencontract='null'
@@ -95,13 +95,13 @@ async def get_token_data(addy):
 
 
 
-TOKEN ="OTUwODQyNDg3ODUxODY4MjEw.YiezEg.tqeSIHrE4T8hESzf_BvIKahYULQ"
+TOKEN =""
 
 client = discord.Client()
 
 @client.event
 async def tokenalert(token_name, token_symbol, etherscan_url):
-    channel = client.get_channel(950842060594905108)
+    channel = client.get_channel()
     print(channel)
     print('preparing to send alert...')
     embed2 = discord.Embed(title = str(token_name), description= token_symbol +': created on Uniswap!', url = str(etherscan_url), color = 0xffd800 )
